@@ -14,5 +14,5 @@ app.get("/api", (req, res) => {
 //Port
 
 app.listen(8090, () => {
-    console.log("Starting Node...")
+    console.log("Starting Node...");
 })
