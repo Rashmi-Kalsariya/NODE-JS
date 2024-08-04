@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+
+<body>
+
+    <form id="data">
+        <input id="Username" type="text" placeholder="username...">
+        <input id="email" type="email" placeholder="email...">
+        <input id="password" type="password" placeholder="password...">
+        <input type="submit" value="submit">
+    </form>
+
+</body>
+
+<script>
+
+    const Post = async (data) => {
+
+        try {
+            let req = await fetch("http://localhost:8090/user",
+                {
+                    method: "POST",
+                    headers: { "content-type": "application/json" },
+                    body: JSON.stringify(data)
+
+                })
+            let res = await req.json()
+            console.log(res);
+
+        } catch (error) {
+            console.log(error);
+
+        }
+
+    }
+
+    const UserData = (e) => {
+        e.preventDefault();
+
+        let user = {
+            Username: document.getElementById("Username").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value,
+        }
+        Post(user)
+
+    }
+
+    document.getElementById("data").addEventListener("submit", UserData)
+</script>
+
+</html>
